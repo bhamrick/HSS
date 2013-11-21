@@ -1,12 +1,15 @@
 {-# LANGUAGE OverloadedStrings #-}
 module HSS.Properties where
 
-import HSS.Datatypes
 import Data.ByteString.Char8
 
--- generic property restricted to ByteString names
-prop :: PropertyValue b => ByteString -> b -> CssM a
+import HSS.Datatypes
+
+import HSS.Color
+
+-- generic property restricted to ByteString names/values
+prop :: ByteString -> ByteString -> CssM a
 prop = AddProperty
 
-color :: ByteString -> CssM a
-color = prop "color"
+color :: Color -> CssM a
+color = AddProperty ("color" :: ByteString)
