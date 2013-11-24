@@ -4,6 +4,7 @@ import HSS.Selectors
 import qualified HSS.Selectors as S
 import HSS.Properties
 import qualified HSS.Properties as P
+import HSS.Length (LengthUnit(..))
 
 import HSS.Renderer.Simple
 
@@ -17,6 +18,7 @@ template = do
         P.prop "text-align" "center"
     S.tag "p" & S.cls "hi" $ do
         P.color "#000"
+        P.borderBottomWidth (2 Px)
 
 main :: IO ()
 main = BS.putStrLn $ renderCss template
