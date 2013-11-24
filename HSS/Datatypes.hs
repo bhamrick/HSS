@@ -9,6 +9,8 @@ import Control.Applicative
 import Control.Monad
 import Data.Monoid
 
+import Text.Printf
+
 class PropertyName a where
     displayName :: a -> ByteString
 
@@ -20,6 +22,12 @@ class PropertyValue a where
 
 instance PropertyValue ByteString where
     displayValue = id
+
+instance PropertyValue Float where
+    displayValue = pack . printf "%f"
+
+instance PropertyValue Integer where
+    displayValue = pack . show
 
 -- TODO: expand to include all valid css selectors
 data Selector = Root |
